@@ -9,8 +9,24 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.render("homepage");
+  res.render("createcard");
 });
+
+app.post("/", (req, res) => {
+  let newName = req.body.thename
+  let newAboutMe = req.body.aboutme
+  let HTMLlol = req.body.HTML
+  console.log(newName)
+  console.log(newAboutMe)
+  console.log(HTMLlol)
+
+  res.redirect("homepage")
+});
+
+app.get("/homepage", (req, res) => {
+  res.render("homepage", { user: req.body })
+})
+
 app.get("/people/:id", (req, res) => {
   res.render("people");
 });
